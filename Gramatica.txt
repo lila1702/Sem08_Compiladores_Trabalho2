@@ -6,6 +6,7 @@
 <Pow> ::= <Atom> (<Pow> <Factor>)*
 <Atom> ::= INT | FLOAT | STRING | ID | <ListExp> | LPAR <Exp> RPAR
 <ListExp> ::= LSQUARE [ <Exp> (COMMA <Exp>)* ] RSQUARE
+<TupleExp> ::= LPAR <Exp> COMMA <Exp> (COMMA <Exp)*  RPAR
 
 PLUS é o +
 MUL é o *

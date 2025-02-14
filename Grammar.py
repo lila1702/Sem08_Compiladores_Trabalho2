@@ -91,14 +91,16 @@ class Atom(Grammar): # A variable from Grammar G
             return ast.success(listExp)
         ##############################
         elif tok.type == Consts.LPAR:
-            self.NextToken()
-            exp = ast.registry(Exp(self.parser).Rule())
-            if ast.error: return ast
-            if self.CurrentToken().type == Consts.RPAR:
-                self.NextToken()
-                return ast.success(exp)
-            else:
-                return ast.fail(f"{Error.parserError}: Esperando por '{Consts.RPAR}'")
+            # Evita confundir a tupla com uma expressão em parênteses
+            return TupleExp(self.parser).Rule()
+            # self.NextToken()
+            # exp = ast.registry(Exp(self.parser).Rule())
+            # if ast.error: return ast
+            # if self.CurrentToken().type == Consts.RPAR:
+            #     self.NextToken()
+            #     return ast.success(exp)
+            # else:
+            #     return ast.fail(f"{Error.parserError}: Esperando por '{Consts.RPAR}'")
             
         return ast.fail(f"{Error.parserError}: Esperado por '{Consts.INT}', '{Consts.FLOAT}', '{Consts.PLUS}', '{Consts.MINUS}', '{Consts.LPAR}'")
 
@@ -127,3 +129,44 @@ class ListExp(Grammar):
             self.NextToken()
         
         return ast.success(NoList(elementNodes))
+
+#################################
+
+class TupleExp(Grammar):
+    def Rule(self):
+        ast = self.GetParserManager()
+        elements = []
+        # Consome o token LPAR (já detectado em Atom)
+        self.NextToken()  
+        
+        # Tenta ler a primeira expressão
+        first_expr = ast.registry(Exp(self.parser).Rule())
+        if ast.error: 
+            return ast
+
+        # Se após a primeira expressão houver vírgula, trata-se de tupla
+        if self.CurrentToken().type == Consts.COMMA:
+            elements.append(first_expr)
+            
+            while self.CurrentToken().type == Consts.COMMA:
+                self.NextToken()
+                
+                # Permite tupla com vírgula final, por exemplo: (1,2,)
+                if self.CurrentToken().type == Consts.RPAR:
+                    break
+                expr = ast.registry(Exp(self.parser).Rule())
+                if ast.error: 
+                    return ast
+                elements.append(expr)
+                
+            if self.CurrentToken().type != Consts.RPAR:
+                return ast.fail(f"{Error.parserError}: Esperando por '{Consts.RPAR}'")
+            self.NextToken()
+            return ast.success(NoTuple(elements))
+        
+        else:
+            # Sem vírgula: trata-se de uma expressão parenthesizada.
+            if self.CurrentToken().type != Consts.RPAR:
+                return ast.fail(f"{Error.parserError}: Esperando por '{Consts.RPAR}'")
+            self.NextToken()
+            return ast.success(first_expr)
