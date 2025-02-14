@@ -96,3 +96,17 @@ class TList(TValue):
 	def __repr__(self):
 		return f"{str(self.value)}"
 ##############################
+class TTuple(TValue):
+    def __init__(self, value):
+        self.value = tuple(value)
+        self.setMemory()
+    
+    def setMemory(self, memory=None):
+        self.memory = memory
+        return self
+    
+    def copy(self):
+        return TTuple(self.value).setMemory(self.memory)
+    
+    def __repr__(self):
+        return f"{self.value}"

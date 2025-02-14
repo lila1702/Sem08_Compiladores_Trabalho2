@@ -148,3 +148,22 @@ class NoList(Visitor):
 
 	def __repr__(self):
 		return f'{self.elements}'
+
+###############################
+
+class NoTuple(Visitor):
+    def __init__(self, tok):
+        self.elements = tok
+        
+    def visit(self, operator):
+        lValue = []
+        for element_node in self.elements:
+            value = operator.registry(element_node.visit(operator))
+            if (operator.error):
+                return operator
+            lValue.append(value)
+            
+        return operator.success(TTuple(lValue).setMemory(operator))
+    
+    def __repr__(self):
+        return f'{self.elements}'
