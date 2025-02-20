@@ -84,6 +84,10 @@ class NoOpBinaria(Visitor):
 			result, error = esq.div(dir)
 		elif self.opTok.type == Consts.POW:
 			result, error = esq.pow(dir)
+		elif self.opTok.type == 'and':  # Adicionando lógica para AND
+			result, error = esq.and_op(dir)
+		elif self.opTok.type == 'or':   # Adicionando lógica para OR
+			result, error = esq.or_op(dir)
 
 		if error:
 			return operator.fail(error)

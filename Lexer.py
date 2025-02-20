@@ -67,6 +67,7 @@ class Lexer:
                 self.__advance()
             elif(self.current == 'true' or self.current == 'false'):
                 tokens.append(Token(Consts.BOOL, self.current))
+                print(f'Token BOOL reconhecidoooooooo: {self.current}')
                 self.__advance()
             else:
                 self.__advance()
