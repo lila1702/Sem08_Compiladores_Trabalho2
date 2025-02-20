@@ -7,6 +7,11 @@
 <Atom> ::= INT | FLOAT | STRING | ID | <ListExp> | LPAR <Exp> RPAR
 <ListExp> ::= LSQUARE [ <Exp> (COMMA <Exp>)* ] RSQUARE
 <TupleExp> ::= LPAR <Exp> COMMA <Exp> (COMMA <Exp)*  RPAR
+<TernaryConditional> ::= <Exp> QUESTION <Exp> COLON <Exp>
+<WhileExp> ::= [WHILE] LPAR <Exp>* RPAR <Exp>* LBRACE <Exp>* RBRACE
+
+
+
 
 PLUS é o +
 MUL é o *
@@ -20,3 +25,8 @@ FLOAT é um float qualquer
 ID é qualquer identificador
 LET é a palavra reservada let
 STRING algo entre aspas
+QUESTION é ?
+COLON é :
+LBRACE é o {
+RBRACE é o }
+
