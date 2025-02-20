@@ -51,7 +51,6 @@ class Lexer:
             elif self.current == Consts.RPAR:
                 tokens.append(Token(Consts.RPAR))
                 self.__advance()
-            ##################################
             elif self.current in Consts.LETRAS + Consts.UNDER:
                 tokens.append(self.__makeId())
             elif self.current == Consts.LSQUARE:
@@ -66,7 +65,9 @@ class Lexer:
             elif self.current == Consts.EQ:
                 tokens.append(Token(Consts.EQ))
                 self.__advance()
-            ##############################
+            elif(self.current == 'true' or self.current == 'false'):
+                tokens.append(Token(Consts.BOOL, self.current))
+                self.__advance()
             else:
                 self.__advance()
                 return [], Error(f"{Error.lexerError}: lex-symbol '{self.current}' fail!")

@@ -76,7 +76,7 @@ class TString(TValue):
 		return copy		
 	def __repr__(self):
 		return f'"{str(self.value)}"'
-##############################
+
 class TList(TValue):
 	def __init__(self, value):
 		self.value = value
@@ -95,7 +95,7 @@ class TList(TValue):
 	
 	def __repr__(self):
 		return f"{str(self.value)}"
-##############################
+
 class TTuple(TValue):
     def __init__(self, value):
         self.value = tuple(value)
@@ -110,3 +110,21 @@ class TTuple(TValue):
     
     def __repr__(self):
         return f"{self.value}"
+	
+
+class TBool(TValue):
+    def __init__(self, value):
+        self.value = value
+        self.setMemory()
+
+    def setMemory(self, memory=None):
+        self.memory = memory
+        return self
+
+    def copy(self):
+        copy = TBool(self.value)
+        copy.setMemory(self.memory)
+        return copy
+
+    def __repr__(self):
+        return str(self.value)

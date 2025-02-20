@@ -24,7 +24,7 @@ class Consts:
     LSQUARE   = "[" # Left  Box brackets [
     RSQUARE   = "]" # Right Box brackets ]
     COMMA      = ","
-
+    BOOL      = 'BOOL'
 
     # Exemplos de Palavras reservadas
     LET         = 'let'
@@ -35,6 +35,7 @@ class Consts:
         LET,
         IF,
         WHILE,
-        FOR
+        FOR,
+        BOOL
     ]
 

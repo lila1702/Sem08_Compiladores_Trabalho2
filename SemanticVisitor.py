@@ -167,3 +167,14 @@ class NoTuple(Visitor):
     
     def __repr__(self):
         return f'{self.elements}'
+	
+
+class NoBool(Visitor):
+    def __init__(self, tok):
+        self.tok = tok
+
+    def visit(self, operator):
+        return operator.success(TBool(self.tok.value).setMemory(operator))
+
+    def __repr__(self):
+        return f'{self.tok}'
