@@ -114,8 +114,11 @@ class TTuple(TValue):
 
 class TBool(TValue):
     def __init__(self, value):
-        super().__init__()
         self.value = value
+
+    def setMemory(self,memory=None):
+        self.memory = memory
+        return self
 
     def and_op(self, other):
         if isinstance(other, TBool):
@@ -126,3 +129,9 @@ class TBool(TValue):
         if isinstance(other, TBool):
             return TBool(self.value or other.value), None
         return None, Error("Operação 'or' não suportada para tipos diferentes.")
+	
+    def __repr__(self):
+        return f"{self.value}"
+	
+    def copy(self):
+        return TTuple(self.value).setMemory(self.memory)

@@ -65,10 +65,6 @@ class Lexer:
             elif self.current == Consts.EQ:
                 tokens.append(Token(Consts.EQ))
                 self.__advance()
-            elif(self.current == 'true' or self.current == 'false'):
-                tokens.append(Token(Consts.BOOL, self.current))
-                print(f'Token BOOL reconhecidoooooooo: {self.current}')
-                self.__advance()
             else:
                 self.__advance()
                 return [], Error(f"{Error.lexerError}: lex-symbol '{self.current}' fail!")
@@ -120,6 +116,12 @@ class Lexer:
             lexema += self.current
             self.__advance()
 
-        tokType = Consts.KEY if lexema in Consts.KEYS else Consts.ID
+        if lexema in Consts.KEYS:
+            if lexema in ['true', 'false']:
+                tokType = Consts.BOOL
+            else:
+                tokType = Consts.KEY
+        else:
+            tokType = Consts.ID
         return Token(tokType, lexema)
     ##############################

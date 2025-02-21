@@ -24,18 +24,19 @@ class Consts:
     LSQUARE   = "[" # Left  Box brackets [
     RSQUARE   = "]" # Right Box brackets ]
     COMMA      = ","
-    BOOL      = 'BOOL'
 
     # Exemplos de Palavras reservadas
     LET         = 'let'
     IF          = 'if'
     WHILE       = 'while'
     FOR         = 'for'
+    BOOL        = 'BOOL'
     KEYS = [
-        LET,
-        IF,
-        WHILE,
-        FOR,
-        BOOL
+        'let',
+        'if',
+        'while',
+        'for',
+        'true',
+        'false'
     ]
 

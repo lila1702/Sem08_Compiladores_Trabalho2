@@ -1,6 +1,6 @@
 <Exp> ::= <Term> ((MINUS | PLUS) <Term>)*
 <Exp> ::= [LET] ID EQ <Exp>
-<Exp> ::= <Exp> (AND | OR) <Exp>  # Adicionando operações lógicas
+<Exp> ::= <Exp> (AND | OR) <Exp>
 <Term> ::= <Factor> ((MUL | DIV) <Factor>)*
 <Factor> ::= (PLUS | MINUS)* <Factor>
 <Factor> ::= <Pow>
