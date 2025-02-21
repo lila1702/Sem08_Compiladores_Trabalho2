@@ -84,12 +84,13 @@ class Atom(Grammar): # A variable from Grammar G
         elif(tok.type == Consts.STRING):
             self.NextToken()
             return ast.success(NoString(tok))
-        ##############################
         elif tok.type == Consts.LSQUARE:
             listExp = ast.registry(ListExp(self.parser).Rule())
             if (ast.error!=None): return ast
             return ast.success(listExp)
-        ##############################
+        elif(tok.type == Consts.BOOL):
+            self.NextToken()
+            return ast.success(NoBool(tok))
         elif tok.type == Consts.LPAR:
             # Evita confundir a tupla com uma expressão em parênteses
             return TupleExp(self.parser).Rule()

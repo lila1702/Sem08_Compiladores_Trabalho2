@@ -25,16 +25,18 @@ class Consts:
     RSQUARE   = "]" # Right Box brackets ]
     COMMA      = ","
 
-
     # Exemplos de Palavras reservadas
     LET         = 'let'
     IF          = 'if'
     WHILE       = 'while'
     FOR         = 'for'
+    BOOL        = 'BOOL'
     KEYS = [
-        LET,
-        IF,
-        WHILE,
-        FOR
+        'let',
+        'if',
+        'while',
+        'for',
+        'true',
+        'false'
     ]
 
