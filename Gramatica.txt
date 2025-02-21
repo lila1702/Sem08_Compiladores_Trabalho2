@@ -9,6 +9,9 @@
 <ListExp> ::= LSQUARE [ <Exp> (COMMA <Exp>)* ] RSQUARE
 <TupleExp> ::= LPAR <Exp> COMMA <Exp> (COMMA <Exp)*  RPAR
 BOOL ::= "true" | "false"
+<TernaryConditional> ::= <Exp> QUESTION <Exp> COLON <Exp>
+<WhileExp> ::= [WHILE] LPAR <Exp>* RPAR <Exp>* LBRACE <Exp>* RBRACE
+
 
 
 
@@ -24,3 +27,8 @@ FLOAT é um float qualquer
 ID é qualquer identificador
 LET é a palavra reservada let
 STRING algo entre aspas
+QUESTION é ?
+COLON é :
+LBRACE é o {
+RBRACE é o }
+
