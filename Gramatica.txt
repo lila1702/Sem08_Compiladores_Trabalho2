@@ -8,12 +8,9 @@
 <Atom> ::= INT | FLOAT | STRING | ID | <ListExp> | LPAR <Exp> RPAR | BOOL
 <ListExp> ::= LSQUARE [ <Exp> (COMMA <Exp>)* ] RSQUARE
 <TupleExp> ::= LPAR <Exp> COMMA <Exp> (COMMA <Exp)*  RPAR
-BOOL ::= "true" | "false"
+<Bool> ::= "true" | "false"
 <TernaryConditional> ::= <Exp> QUESTION <Exp> COLON <Exp>
 <WhileExp> ::= [WHILE] LPAR <Exp>* RPAR <Exp>* LBRACE <Exp>* RBRACE
-
-
-
 
 PLUS é o +
 MUL é o *
